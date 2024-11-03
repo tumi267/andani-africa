@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <iframe
+    id="vimeoVid"
+    src=""
+    ></iframe>
+    <div id="overlay">click to unmute</div>
+    <div id="overlay2" style="display: none;">click to mute</div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const url1 = 'https://player.vimeo.com/video/1024788186?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479';
+          const url2 = 'https://player.vimeo.com/video/983093773?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479';
+    
+          const screenWidth = window.innerWidth;
+          const element = document.getElementById('vimeoVid'); 
+    
+          if (element) {
+            // mobile 
+            if (screenWidth < 479) {
+              element.setAttribute('src', url1);
+              const videoplayer=document.getElementById('vimeoVid')
+                 const overlay = document.getElementById('overlay');
+        const overlay2 = document.getElementById('overlay2');
+        var player = new Vimeo.Player(videoplayer);
+        player.setVolume(0); // Ensure the video is muted
+
+        player.on('loaded', function() {
+            player.play().catch(function(error) {
+                console.error('Error attempting to play video:', error);
+            });
+        });
+        player.on('ended', function() {
+            player.setCurrentTime(0).then(function() {
+                player.play();
+            }).catch(function(error) {
+                console.error('Error restarting video:', error);
+            });
+        });
+        overlay.addEventListener('click', function() {
+            player.setVolume(1).then(function() {
+                overlay.style.display = 'none';
+                overlay2.style.display='block'
+            }).catch(function(error) {
+                console.error('Error unmuting video:', error);
+            });
+        });
+        overlay2.addEventListener('click',function(){
+            player.setVolume(0).then(function() {
+                overlay.style.display = 'block';
+                overlay2.style.display='none'
+            }).catch(function(error) {
+                console.error('Error unmuting video:', error);
+            });
+        })
+            } else {
+            // desktop
+              element.setAttribute('src', url2);
+        const videoplayer=document.getElementById('vimeoVid')
+        const overlay = document.getElementById('overlay');
+        const overlay2 = document.getElementById('overlay2');
+        var player = new Vimeo.Player(videoplayer);
+        player.setVolume(0); // Ensure the video is muted
+
+        player.on('loaded', function() {
+            player.play().catch(function(error) {
+                console.error('Error attempting to play video:', error);
+            });
+        });
+        player.on('ended', function() {
+            player.setCurrentTime(0).then(function() {
+                player.play();
+            }).catch(function(error) {
+                console.error('Error restarting video:', error);
+            });
+        });
+        overlay.addEventListener('click', function() {
+            player.setVolume(1).then(function() {
+                overlay.style.display = 'none';
+                overlay2.style.display='block'
+            }).catch(function(error) {
+                console.error('Error unmuting video:', error);
+            });
+        });
+        overlay2.addEventListener('click',function(){
+            player.setVolume(0).then(function() {
+                overlay.style.display = 'block';
+                overlay2.style.display='none'
+            }).catch(function(error) {
+                console.error('Error unmuting video:', error);
+            });
+        })
+            }
+          }
+        });
+
+        
+      </script>
+</body>
+</html>
+
