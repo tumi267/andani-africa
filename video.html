@@ -27,6 +27,11 @@
           if (element) {
             // mobile 
             if (screenWidth < 479) {
+                const snapContainer = document.querySelector('.snap-container');
+                const codeEmbed = document.querySelector('.code-embed');
+                // Set the display style to block
+                snapContainer.style.display = 'block';
+                codeEmbed.style.display = 'block';
               element.setAttribute('src', url1);
               const videoplayer=document.getElementById('vimeoVid')
                  const overlay = document.getElementById('overlay');
